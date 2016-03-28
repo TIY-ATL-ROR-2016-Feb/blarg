@@ -12,7 +12,7 @@
 <!-- <button type="submit">Create Post!</button> -->
 <!-- </form> -->
 
-<%=  form_tag("/posts") do %>
+<%=  form_tag(posts_path) do %>
     <div class="post-field">
         <%= label_tag("Title: ") %> <br/>
         <%= text_field_tag("title") %>
