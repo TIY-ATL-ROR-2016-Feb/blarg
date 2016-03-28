@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   def index
-    render :index
+    posts = Post.all
+    render :index, locals: { posts: posts }
   end
 end
