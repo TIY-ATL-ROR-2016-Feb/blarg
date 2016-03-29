@@ -4,9 +4,10 @@
 
 <ul class="posts">
   <% posts.each do |post| %>
-      <li class="blog-post">
-        Title: <%= post.title %>
-          <%= link_to("Edit this post!", edit_post_path(post)) %>
+      <li class="post">
+        <%= render partial: "post", locals: { post: post } %>
+         <%= link_to("Edit Post", edit_post_path(post)) %>
+         <%= link_to("Delete Post", post_path(post), method: :delete) %>
       </li>
   <% end %>
 </ul>

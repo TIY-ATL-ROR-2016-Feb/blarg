@@ -31,4 +31,9 @@ class PostsController < ApplicationController
     post.destroy
     redirect_to :root
   end
+
+  def show
+    @post = Post.find(params["id"])
+    render :show
+  end
 end
