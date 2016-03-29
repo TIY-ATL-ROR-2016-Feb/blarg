@@ -10,6 +10,14 @@ Rails.application.routes.draw do
   get "posts/new", to: "posts#new", as: "posts_new"
   post "posts", to: "posts#create"
 
+  get "posts/:id/edit", to: "posts#edit", as: "edit_post"
+  put "posts/:id", to: "posts#update", as: "post"
+  get "posts/:id", to: "posts#show"
+  delete "posts/:id", to: "posts#destroy"
+
+  # get "users/:uid/posts/:pid/comments/:cid"
+  # post_comment_path(user.id, post.id, comment.id)
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

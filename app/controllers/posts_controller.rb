@@ -13,4 +13,16 @@ class PostsController < ApplicationController
                            content: params["content"])
     redirect_to :root
   end
+
+  def edit
+    post = Post.find(params["id"])
+    render :edit, locals: { post: post }
+  end
+
+  def update
+    post = Post.find(params["id"])
+    post.update(title: params["title"],
+                content: params["content"])
+    redirect_to root_path
+  end
 end

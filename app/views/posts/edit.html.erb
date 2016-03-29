@@ -1,0 +1,13 @@
+<%=  form_tag(post_path(post), method: :put) do %>
+    <div class="post-field">
+        <%= label_tag("Title: ") %> <br/>
+        <%= text_field_tag("title", post.title) %>
+    </div>
+
+    <div class="post-field">
+        <%= label_tag("Content: ") %> <br/>
+        <%= text_area_tag("content", post.content) %>
+    </div>
+
+    <%= button_tag("Update Post!") %>
+<% end %>
