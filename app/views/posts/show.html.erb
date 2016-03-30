@@ -6,18 +6,23 @@
     <br/>
 </nav>
 
+<div class="comments-form">
+    <h3>Add a Comment</h3>
+    <%= form_tag(post_comments_path(@post.id)) do %>
+      <div class="comment-field">
+          <%= label_tag("Comment") %>
+          <%= text_area_tag("body", nil, cols: 40, rows: 8) %>
+      </div>
 
-<%= form_tag(post_comments_path(@post.id)) do %>
-    <div class="comment-field">
-        <%= label_tag("Comment") %>
-        <%= text_area_tag("body", nil, cols: 40, rows: 8) %>
-    </div>
+      <%= button_tag("Create Comment!") %>
+    <% end %>
+</div>
 
-    <%= button_tag("Create Comment!") %>
-<% end %>
-
-<% @post.comments.each do |comment| %>
-    <div class="post-comment">
-        <%= comment.body %>
-    </div>
-<% end %>
+<h2>Insightful Comments</h2>
+<div class="comments">
+  <% @post.comments.each do |comment| %>
+      <div class="post-comment">
+          <%= comment.body %>
+      </div>
+  <% end %>
+</div>
