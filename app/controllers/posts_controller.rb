@@ -10,17 +10,28 @@ class PostsController < ApplicationController
   end
 
   def create
-    tag_names = params["tags"].split(", ")
-    tags = tag_names.map { |name| Tag.find_or_create_by(name: name) }
     @post = Post.new(title: params["title"],
-                     tags: tags,
+                     tag_names: params["tags"],
                      content: params["content"])
     if @post.save
-      redirect_to :root
+      redirect_to post_path(@post)
     else
       render :new
     end
   end
+
+  # def create
+  #   tag_names = params["tags"].split(", ")
+  #   tags = tag_names.map { |name| Tag.find_or_create_by(name: name) }
+  #   @post = Post.new(title: params["title"],
+  #                    tags: tags,
+  #                    content: params["content"])
+  #   if @post.save
+  #     redirect_to :root
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def edit
     post = Post.find(params["id"])
@@ -30,6 +41,7 @@ class PostsController < ApplicationController
   def update
     post = Post.find(params["id"])
     post.update(title: params["title"],
+                tag_names: params["tags"],
                 content: params["content"])
     # post.title = params["title"]
     # post.content = params["content"]
