@@ -18,11 +18,11 @@
     <% end %>
 </div>
 
-<h2>Insightful Comments</h2>
+<h3>Insightful Comments</h3>
 <div class="comments">
   <% @post.comments.each do |comment| %>
       <div class="post-comment">
-          <%= comment.body %>
+          <%= simple_format(comment.body) %>
       </div>
   <% end %>
 </div>

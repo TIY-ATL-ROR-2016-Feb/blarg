@@ -19,6 +19,11 @@
     </div>
 
     <div class="post-field">
+        <%= label_tag("Tags: ") %>
+        <%= text_field_tag("tags", @post.tags) %>
+    </div>
+ 
+    <div class="post-field">
         <%= label_tag("Content: ") %> <br/>
         <%= text_area_tag("content", @post.content) %>
     </div>
