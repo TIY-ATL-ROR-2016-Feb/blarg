@@ -5,6 +5,11 @@
     </div>
 
     <div class="post-field">
+        <%= label_tag("Tags: ") %> <br/>
+        <%= text_field_tag("tags", post.tag_names) %>
+    </div>
+
+    <div class="post-field">
         <%= label_tag("Content: ") %> <br/>
         <%= text_area_tag("content", post.content) %>
     </div>
