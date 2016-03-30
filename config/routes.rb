@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get "posts/:id", to: "posts#show"
   delete "posts/:id", to: "posts#destroy"
 
+  post "posts/:id/comments", to: "comments#create", as: "post_comments"
+
+
   # get "users/:uid/posts/:pid/comments/:cid"
   # post_comment_path(user.id, post.id, comment.id)
 
