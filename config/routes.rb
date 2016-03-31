@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   post "posts/:id/comments", to: "comments#create", as: "post_comments"
   get "tagged/:name", to: "tags#index", as: "tagged_posts"
 
+  get "signups/new", to: "registrations#new", as: "new_signup"
+  post "signups", to: "registrations#create", as: "signups"
+
   # get "users/:uid/posts/:pid/comments/:cid"
   # post_comment_path(user.id, post.id, comment.id)
 
