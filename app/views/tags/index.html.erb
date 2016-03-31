@@ -1,0 +1,10 @@
+<%= link_to("All Posts", posts_path) %>
+
+<h3>Posts tagged with '<%= @tag.name %>'</h3>
+
+<ul class="tagged-posts">
+    <% @posts.each do |post| %>
+        <%= render partial: "posts/post",
+          locals: { post: post } %>
+    <% end %>
+</ul>
