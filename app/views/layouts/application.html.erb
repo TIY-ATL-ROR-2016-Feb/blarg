@@ -7,6 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <nav>
+        <% if session[:user_id] != nil %>
+            <h4>Hi there, <%= User.find(session[:user_id]).first_name %>!</h4>
+            <%= link_to("Logout", login_path, method: :delete) %>
+        <% else %>
+            <%= link_to("Signup", new_signup_path) %>
+            <%= link_to("Login", login_path) %>
+        <% end %>
+    </nav>
+
+  <% if flash[:notice] %>
+      <h3 class="alert"><%= flash[:notice] %></h3>
+  <% end %>
 
 <%= yield %>
 

@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   get "signups/new", to: "registrations#new", as: "new_signup"
   post "signups", to: "registrations#create", as: "signups"
 
+  get "login", to: "logins#new", as: "login"
+  post "login", to: "logins#create"
+  delete "login", to: "logins#destroy"
+
   # get "users/:uid/posts/:pid/comments/:cid"
   # post_comment_path(user.id, post.id, comment.id)
 
