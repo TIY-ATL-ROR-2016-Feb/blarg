@@ -1,6 +1,15 @@
 <h2>New User</h2>
 
 <%= form_tag(signups_path) do %>
+
+    <ul class="form-errors">
+        <% if @user.errors.count > 0 %>
+            <% @user.errors.full_messages.each do |message| %>
+                <li class="form-error"><%= message %></li>
+            <% end %>
+        <% end %>
+    </ul>
+
     <div class="user-field">
         <%= label_tag("First") %> <br/>
         <%= text_field_tag("first", @user.first_name) %>
