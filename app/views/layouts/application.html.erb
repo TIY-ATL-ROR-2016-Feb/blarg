@@ -8,8 +8,8 @@
 </head>
 <body>
     <nav>
-        <% if session[:user_id] != nil %>
-            <h4>Hi there, <%= User.find_by(id: session[:user_id]).first_name %>!</h4>
+        <% if current_user %>
+            <h4>Hi there, <%= current_user.first_name %>!</h4>
             <%= link_to("Logout", login_path, method: :delete) %>
         <% else %>
             <%= link_to("Signup", new_signup_path) %>
