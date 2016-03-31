@@ -10,9 +10,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(title: params["title"],
-                     tag_names: params["tags"],
-                     content: params["content"])
+    @post = current_user.posts.new(title: params["title"],
+                                   tag_names: params["tags"],
+                                   content: params["content"])
+    # @post = Post.new(title: params["title"],
+    #                  tag_names: params["tags"],
+    #                  user_id: current_user.id,
+    #                  content: params["content"])
     if @post.save
       redirect_to post_path(@post)
     else
@@ -51,7 +55,11 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params["id"])
-    post.destroy
+    if current_user.id == post.user_id
+      post.destroy
+    else
+      flash[:notice] = "You don't have permission to do that, asshole."
+    end
     redirect_to :root
   end
 
