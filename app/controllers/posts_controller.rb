@@ -4,17 +4,20 @@ class PostsController < ApplicationController
     render :index
   end
 
+  def show
+    @post = Post.find(params["id"])
+    render :show
+  end
+
   def new
+    authenticate!
     @post = Post.new
-    if current_user
-      render :new
-    else
-      flash[:notice] = "You have to login to add posts."
-      redirect_to :root
-    end
+    render :new
+#    redirect_to post_path(@post)
   end
 
   def create
+    authenticate!
     @post = current_user.posts.new(title: params["title"],
                                    tag_names: params["tags"],
                                    content: params["content"])
@@ -43,11 +46,13 @@ class PostsController < ApplicationController
   # end
 
   def edit
+    authenticate!
     post = Post.find(params["id"])
     render :edit, locals: { post: post }
   end
 
   def update
+    authenticate!
     post = Post.find(params["id"])
     post.update(title: params["title"],
                 tag_names: params["tags"],
@@ -59,6 +64,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authenticate!
     post = Post.find(params["id"])
     if current_user.id == post.user_id
       post.destroy
@@ -66,10 +72,5 @@ class PostsController < ApplicationController
       flash[:notice] = "You don't have permission to do that, asshole."
     end
     redirect_to :root
-  end
-
-  def show
-    @post = Post.find(params["id"])
-    render :show
   end
 end
