@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160404145616) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
     t.text    "body"
@@ -48,7 +51,6 @@ ActiveRecord::Schema.define(version: 20160404145616) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
-    t.string   "passwords"
   end
 
 end
