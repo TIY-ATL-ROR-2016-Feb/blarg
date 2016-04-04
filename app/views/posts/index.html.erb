@@ -1,4 +1,6 @@
-<%= link_to("Add a New Post!", posts_new_path) %>
+<% if current_user %>
+  <%= link_to("Add a New Post!", posts_new_path) %>
+<% end %>
 
 <h1>ALL OF THE BLOG POSTINGS</h1>
 
