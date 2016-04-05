@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate!, except: [:index, :show]
+
   def index
     @posts = Post.all
     render :index
@@ -10,14 +12,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    authenticate!
     @post = Post.new
     render :new
 #    redirect_to post_path(@post)
   end
 
   def create
-    authenticate!
     @post = current_user.posts.new(title: params["title"],
                                    tag_names: params["tags"],
                                    content: params["content"])
@@ -46,13 +46,11 @@ class PostsController < ApplicationController
   # end
 
   def edit
-    authenticate!
     post = Post.find(params["id"])
     render :edit, locals: { post: post }
   end
 
   def update
-    authenticate!
     post = Post.find(params["id"])
     post.update(title: params["title"],
                 tag_names: params["tags"],
@@ -64,7 +62,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    authenticate!
     post = Post.find(params["id"])
     if current_user.id == post.user_id
       post.destroy
